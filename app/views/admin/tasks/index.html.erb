@@ -1,0 +1,23 @@
+<div class="container">
+
+  <div class="page-header">
+    <h1>Tasks Administration</h1>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+          <%= render "task_template_form" %>
+
+
+          <ul>
+          <% @tasks.all.each do |t| %>
+              <li><%= t.task_template.description %></li>
+          <% end %>
+          </ul>
+
+          Create New Additional (Non-Recurring) Task
+
+    </div>
+  </div>
+
+</div>
