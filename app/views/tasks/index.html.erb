@@ -1,24 +1,15 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>Task List</h1>
+    <h1>Shift Task List</h1>
   </div>
 
   <div class="row">
     <div class="col-md-12">
 
       <p>
-        Please complete the following tasks during your shift:
+        <td><%= button_to "Begin New Shift", shifts_url %></td>
       </p>
-
-      <table>
-        <% @tasks.each do |task| %>
-          <tr>
-            <td><%= task.task_template.description %></td>
-            <td><%= button_to "Complete", task_url(task), { method: :put } %></td>
-          </tr>
-        <% end %>
-      </table>
 
     </div>
   </div>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325073840) do
+ActiveRecord::Schema.define(version: 20160401133617) do
+
+  create_table "shifts", force: :cascade do |t|
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "task_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -59,14 +66,17 @@ ActiveRecord::Schema.define(version: 20160325073840) do
     t.integer  "task_state_id",    limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "shift_id",         limit: 4
   end
 
+  add_index "tasks", ["shift_id"], name: "index_tasks_on_shift_id", using: :btree
   add_index "tasks", ["task_state_id"], name: "index_tasks_on_task_state_id", using: :btree
   add_index "tasks", ["task_template_id"], name: "index_tasks_on_task_template_id", using: :btree
 
   add_foreign_key "task_notes", "tasks"
   add_foreign_key "task_templates", "task_categories"
   add_foreign_key "task_templates", "task_locations"
+  add_foreign_key "tasks", "shifts"
   add_foreign_key "tasks", "task_states"
   add_foreign_key "tasks", "task_templates"
 end

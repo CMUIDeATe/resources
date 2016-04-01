@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="page-header">
+    <h1>Shift Task List</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <p>
+        Please complete the following tasks during your shift:
+      </p>
+
+      <table>
+        <% @shift.tasks.each do |task| %>
+          <tr>
+            <% if task.task_state == TaskState.find_by_name("incomplete") %>
+              <td><%= task.task_template.description %></td>
+            <% else %>
+              <td><s><%= task.task_template.description %></s></td>
+            <% end %>
+            <td><%= button_to "Complete", task_url(task), { method: :put } %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+
+</div>
