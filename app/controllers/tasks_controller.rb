@@ -2,13 +2,15 @@ class TasksController < ApplicationController
 
   def index
     completed_state = TaskState.find_by_name("complete")
+    incompleted_state = TaskState.find_by_name("incomplete")
 
-    #TaskTemplate.all.each do |t|
-    #  if t.tasks.nil? || t.tasks.where(:task_state => completed_state).nil?
-    #    i = t.task.build
-    #    i.save!
-    #  end
-    #end
+    # Instantiate all tasks not yet instantiated
+    TaskTemplate.all.each do |t|
+      if t.tasks.nil? || t.tasks.where.not(:task_state => completed_state).size == 0
+        i = t.tasks.build(:task_state => incompleted_state)
+        i.save!
+      end
+    end
 
     @tasks = Task.where.not(:task_state => completed_state)
   end
