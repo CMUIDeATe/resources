@@ -1,7 +1,7 @@
 class Admin::TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    @templates = TaskTemplate.all
   end
 
   def create

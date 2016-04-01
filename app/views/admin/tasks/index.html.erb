@@ -10,8 +10,8 @@
 
 
           <ul>
-          <% @tasks.all.each do |t| %>
-              <li><%= t.task_template.description %></li>
+          <% @templates.all.each do |t| %>
+              <li><%= t.description %></li>
           <% end %>
           </ul>
 
